@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using SchoolApi.Data;
 
 namespace SchoolApi
 {
@@ -26,6 +28,17 @@ namespace SchoolApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                .WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+            });
+
+            services.AddDbContext<SchoolDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SchoolDataContext")));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
