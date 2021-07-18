@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolApi.Data;
 using SchoolApi.Models;
+using SchoolApi.Helpers;
 
 namespace SchoolApi.Controllers
 {
@@ -15,17 +16,21 @@ namespace SchoolApi.Controllers
     public class AttendanceController : ControllerBase
     {
         private readonly SchoolDataContext _context;
+        private readonly IItemsRepository<Attendance, AttendanceParams> _repo;
 
-        public AttendanceController(SchoolDataContext context)
+        public AttendanceController(SchoolDataContext context, IItemsRepository<Attendance, AttendanceParams> repo)
         {
             _context = context;
+           _repo = repo;
         }
 
         // GET: api/Attendance
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Attendance>>> GetAttendance()
+        public async Task<ActionResult<IEnumerable<Attendance>>> GetAttendance([FromQuery] AttendanceParams attendanceParams)
         {
-            return await _context.Attendance.ToListAsync();
+            var attendances = await _repo.Get(attendanceParams);
+            Response.AddPagination(attendances.CurrentPage,attendances.PageSize, attendances.TotalCount,attendances.TotalPages);
+            return Ok(attendances);
         }
 
         // GET: api/Attendance/5

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using SchoolApi.Data;
 using SchoolApi.Models;
 
+using SchoolApi.Helpers;
+
 namespace SchoolApi.Controllers
 {
     [Route("api/[controller]")]
@@ -15,18 +17,21 @@ namespace SchoolApi.Controllers
     public class StateController : ControllerBase
     {
         private readonly SchoolDataContext _context;
+        private readonly IItemsRepository<State, StateParams> _repo;
 
-        public StateController(SchoolDataContext context)
+        public StateController(SchoolDataContext context, IItemsRepository<State, StateParams> repo)
         {
             _context = context;
+           _repo = repo;
         }
 
         // GET: api/State
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<State>>> GetState()
+        public async Task<ActionResult<IEnumerable<State>>> GetState([FromQuery] StateParams stateParams)
         {
-            return await _context.State.ToListAsync();
-        }
+            var states = await _repo.Get(stateParams);
+            Response.AddPagination(states.CurrentPage,states.PageSize, states.TotalCount,states.TotalPages);
+            return Ok(states);          }
 
         // GET: api/State/5
         [HttpGet("{id}")]

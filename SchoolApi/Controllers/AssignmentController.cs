@@ -16,17 +16,21 @@ namespace SchoolApi.Controllers
     public class AssignmentController : ControllerBase
     {
         private readonly SchoolDataContext _context;
+        private readonly IItemsRepository<Assignment, AssignmentParams> _repo;
 
-        public AssignmentController(SchoolDataContext context)
+        public AssignmentController(SchoolDataContext context, IItemsRepository<Assignment, AssignmentParams> repo)
         {
             _context = context;
+            _repo = repo;
         }
 
         // GET: api/Assignment
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignment([FromQuery] AssignmentParams assignmentParams)
         {
-            return await _context.Assignment.ToListAsync();
+            var assignments = await _repo.Get(assignmentParams);
+            Response.AddPagination(assignments.CurrentPage,assignments.PageSize, assignments.TotalCount,assignments.TotalPages);
+            return Ok(assignments);
         }
 
         // GET: api/Assignment/5

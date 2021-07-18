@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using SchoolApi.Data;
 using SchoolApi.Models;
 
+using SchoolApi.Helpers;
+
 namespace SchoolApi.Controllers
 {
     [Route("api/[controller]")]
@@ -15,18 +17,21 @@ namespace SchoolApi.Controllers
     public class TranslationController : ControllerBase
     {
         private readonly SchoolDataContext _context;
+        private readonly IItemsRepository<Translation, TranslationParams> _repo;
 
-        public TranslationController(SchoolDataContext context)
+        public TranslationController(SchoolDataContext context, IItemsRepository<Translation, TranslationParams> repo)
         {
             _context = context;
+           _repo = repo;
         }
 
         // GET: api/Translation
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Translation>>> GetTranslation()
+        public async Task<ActionResult<IEnumerable<Translation>>> GetTranslation([FromQuery] TranslationParams translationParams)
         {
-            return await _context.Translation.ToListAsync();
-        }
+            var translations = await _repo.Get(translationParams);
+            Response.AddPagination(translations.CurrentPage,translations.PageSize, translations.TotalCount,translations.TotalPages);
+            return Ok(translations);          }
 
         // GET: api/Translation/5
         [HttpGet("{id}")]

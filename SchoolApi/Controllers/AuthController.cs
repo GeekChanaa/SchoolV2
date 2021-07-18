@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 
+using SchoolApi.Helpers;
+
 namespace SchoolApi.Controllers
 {
 
