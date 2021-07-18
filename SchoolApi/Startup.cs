@@ -13,6 +13,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SchoolApi.Data;
+using SchoolApi.Models;
+using SchoolApi.Helpers;
 
 namespace SchoolApi
 {
@@ -39,6 +41,7 @@ namespace SchoolApi
             });
 
             services.AddDbContext<SchoolDataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SchoolDataContext")));
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

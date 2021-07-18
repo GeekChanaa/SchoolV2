@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SchoolApi.Data;
 using SchoolApi.Models;
+using SchoolApi.Helpers;
 
 namespace SchoolApi.Controllers
 {
@@ -23,7 +24,7 @@ namespace SchoolApi.Controllers
 
         // GET: api/Assignment
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignment()
+        public async Task<ActionResult<IEnumerable<Assignment>>> GetAssignment([FromQuery] AssignmentParams assignmentParams)
         {
             return await _context.Assignment.ToListAsync();
         }
