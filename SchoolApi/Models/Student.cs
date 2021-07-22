@@ -20,5 +20,6 @@ namespace SchoolApi.Models
         public string MotherProfession { get; set; }
         public string FatherPlaceOfWork { get; set; }
         public string MotherPlaceOfWork { get; set; }
+        public User User { get; set; }
     }
 }
