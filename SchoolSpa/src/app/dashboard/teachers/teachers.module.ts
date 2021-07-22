@@ -1,8 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DashboardRoutingModule } from './dashboard.routing';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard.component';
 // Material Form Controls
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -39,39 +36,25 @@ import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 // Material Data tables
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AssignmentsModule } from './assignments/assignments.module';
-import { AttendancesModule } from './attendances/attendances.module';
-import { ChaptersModule } from './chapters/chapters.module';
-import { CitiesModule } from './cities/cities.module';
-import { ClassroomsModule } from './classrooms/classrooms.module';
-import { CountriesModule } from './countries/countries.module';
-import { CoursesModule } from './courses/courses.module';
-import { DepartmentsModule } from './departments/departments.module';
-import { DocumentRequestsModule } from './document-requests/document-requests.module';
-import { ExamsModule } from './exams/exams.module';
-import { GradesModule } from './grades/grades.module';
-import { ModulesModule } from './modules/modules.module';
-import { RoomsModule } from './rooms/rooms.module';
-import { SchoolsModule } from './schools/schools.module';
-import { SessionsModule } from './sessions/sessions.module';
-import { StatesModule } from './states/states.module';
-import { StudentsModule } from './students/students.module';
-import { SubModulesModule } from './sub-modules/sub-modules.module';
-import { TeachersModule } from './teachers/teachers.module';
-import { TrainingsModule } from './trainings/trainings.module';
-import { UsersModule } from './users/users.module';
-import { MainComponent } from './main/main.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { CreateComponent } from './create/create.component';
+import { DisplayComponent } from './display/display.component';
+import { TeachersComponent } from './teachers.component';
+import { UpdateComponent } from './update/update.component';
 
 @NgModule({
   declarations: [
-    DashboardComponent,	
-    MainComponent
+    TeachersComponent,
+    CreateComponent,
+    DisplayComponent,
+    UpdateComponent
 ],
   imports: [
     CommonModule,
@@ -117,30 +100,7 @@ import { MainComponent } from './main/main.component';
     MatCardModule,
     MatSnackBarModule,
     MatMenuModule,
-    AssignmentsModule,
-    AttendancesModule,
-    ChaptersModule,
-    CitiesModule,
-    ClassroomsModule,
-    CountriesModule,
-    CoursesModule,
-    DepartmentsModule,
-    DocumentRequestsModule,
-    ExamsModule,
-    GradesModule,
-    ModulesModule,
-    RoomsModule,
-    SchoolsModule,
-    SessionsModule,
-    StatesModule,
-    StudentsModule,
-    SubModulesModule,
-    TeachersModule,
-    TrainingsModule,
-    UsersModule
-    
+    OverlayModule,
   ],
-  providers: [
-  ]
 })
-export class DashboardModule { }
+export class TeachersModule { }
