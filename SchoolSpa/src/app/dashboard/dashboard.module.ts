@@ -77,11 +77,15 @@ import { HomeworksModule } from './homeworks/homeworks.module';
 import { MailsModule } from './mails/mails.module';
 import { ProjectsModule } from './projects/project.module';
 import { TasksModule } from './tasks/tasks.module';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     MainComponent,
+    SidebarComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,

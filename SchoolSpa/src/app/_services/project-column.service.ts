@@ -11,7 +11,7 @@ import { PaginatedResult } from '../_models/pagination';
 export class ProjectColumnService {
 
   // Base URL for the api
-  baseUrl = "https://localhost:5001/api/city/";
+  baseUrl = "https://localhost:5001/api/projectColumn/";
 
   // Constructor
   constructor(private http: HttpClient) { }
@@ -20,8 +20,8 @@ export class ProjectColumnService {
     headers : new HttpHeaders({'Content-Type':'application/json; charset=utf-8'})
   };
 
-  // Getting all Cities
-  getCities(page?, itemsPerPage?, cityParams?): Observable<PaginatedResult<ProjectColumn[]>>{
+  // Getting all ProjectColumns
+  getProjectColumns(page?, itemsPerPage?, projectColumnParams?): Observable<PaginatedResult<ProjectColumn[]>>{
     const paginatedResult : PaginatedResult<ProjectColumn[]> = new PaginatedResult<ProjectColumn[]>();
 
     let params = new HttpParams();
@@ -31,19 +31,19 @@ export class ProjectColumnService {
     }
 
     // Other filter and sort params
-    if(cityParams != null)
+    if(projectColumnParams != null)
     {
-      if(cityParams.orderBy != null)
-      params = params.append("orderBy", cityParams.orderBy);
+      if(projectColumnParams.orderBy != null)
+      params = params.append("orderBy", projectColumnParams.orderBy);
 
-      if(cityParams.searchBy != null)
-      params = params.append("searchBy", cityParams.searchBy);
+      if(projectColumnParams.searchBy != null)
+      params = params.append("searchBy", projectColumnParams.searchBy);
 
-      if(cityParams.searchValue != null)
-      params = params.append("searchValue", cityParams.searchValue);
+      if(projectColumnParams.searchValue != null)
+      params = params.append("searchValue", projectColumnParams.searchValue);
 
-      if(cityParams.reverseOrder != null)
-      params = params.append("reverseOrder", cityParams.reverseOrder);
+      if(projectColumnParams.reverseOrder != null)
+      params = params.append("reverseOrder", projectColumnParams.reverseOrder);
     }
 
 
@@ -79,7 +79,7 @@ export class ProjectColumnService {
     return this.http.put<ProjectColumn>(this.baseUrl+id, model, this.httpOptions);
   }
 
-  // counting Cities
+  // counting ProjectColumns
   count(){
     return this.http.get(this.baseUrl+"count", this.httpOptions);
   }
