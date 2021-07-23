@@ -19,6 +19,7 @@ import { SessionsComponent } from './sessions/sessions.component';
 import { StatesComponent } from './states/states.component';
 import { StudentsComponent } from './students/students.component';
 import { SubModulesComponent } from './sub-modules/sub-modules.component';
+import { TasksComponent } from './tasks/tasks.component';
 import { TeachersComponent } from './teachers/teachers.component';
 import { TrainingsComponent } from './trainings/trainings.component';
 import { UsersComponent } from './users/users.component';
@@ -45,11 +46,12 @@ export const AppRoutes: Routes= [
     { path : "sub-modules" , component : SubModulesComponent},
     { path : "teachers" , component : TeachersComponent},
     { path : "trainings" , component : TrainingsComponent},
-    { path : "users" , component : UsersComponent},
+    { path : "tasks" , component : TasksComponent},
+    { path : "projects" , component : UsersComponent},
 ]
 
 @NgModule({
-  imports: [RouterModule.forRoot(AppRoutes)],
+  imports: [RouterModule.forChild(AppRoutes)],
   exports: [RouterModule],
 })
 export class DashboardRoutingModule{

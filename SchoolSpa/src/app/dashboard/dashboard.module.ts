@@ -82,11 +82,6 @@ import { TasksModule } from './tasks/tasks.module';
   declarations: [
     DashboardComponent,
     MainComponent,
-    AbsenceJustificationsComponent,
-    HomeworksComponent,
-    MailsComponent,
-    ProjectsComponent,
-    TasksComponent
   ],
   imports: [
     CommonModule,
@@ -157,7 +152,7 @@ import { TasksModule } from './tasks/tasks.module';
     HomeworksModule,
     MailsModule,
     ProjectsModule,
-    TasksModule
+    DashboardRoutingModule
 
   ],
   providers: [
